@@ -13,6 +13,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "allowJs": true, // Add this line to allow JavaScript files
 
     /* Linting */
     "strict": true,
