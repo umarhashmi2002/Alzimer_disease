@@ -2,20 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { Amplify } from 'aws-amplify';
+import awsconfig from './aws-exports';
+// import { Authenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
-const moduleURL = new URL(import.meta.url);
-const awsConfigPath = new URL('./aws-exports.js', moduleURL).pathname;
+// Configure Amplify with the exported configuration
+Amplify.configure(awsconfig);
 
-import(awsConfigPath).then((awsconfig) => {
-  console.log('AWS Config:', awsconfig.default); // Log the configuration
-  Amplify.configure(awsconfig.default);
-
-  const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const container = document.getElementById('root');
+if (container) {
+  const root = ReactDOM.createRoot(container as HTMLElement);
   root.render(
     <React.StrictMode>
       <App />
     </React.StrictMode>
   );
-}).catch((error) => {
-  console.error('Error loading AWS Config:', error); // Log any errors
-});
+} else {
+  console.error('Root container missing in index.html');
+}

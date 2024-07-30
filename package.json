@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aws-amplify/auth": "^6.3.11",
     "@aws-amplify/datastore": "^5.0.42",
     "@aws-amplify/ui-react": "^6.1.14",
     "aws-amplify": "^6.4.3",
