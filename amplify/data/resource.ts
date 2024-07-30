@@ -1,5 +1,5 @@
 // amplify/data/resource.ts
-import { a, ClientSchema } from "@aws-amplify/backend";
+import { a, ClientSchema } from '@aws-amplify/backend';
 
 const schema = a.schema({
   FitnessData: a.model({
@@ -7,7 +7,7 @@ const schema = a.schema({
     date: a.date(),
     workoutType: a.string(),
     duration: a.float(),
-  }).authorization((allow: ClientSchema<typeof schema>): ClientSchema<typeof schema>[] => [allow.owner() as ClientSchema<typeof schema>]),
+  }).authorization((allow: ClientSchema<typeof schema>) => [allow.owner()]),
 
   NutritionData: a.model({
     userId: a.string(),

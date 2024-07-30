@@ -1,14 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
-import "./index.css";
-import { Amplify } from "aws-amplify";
-import outputs from "../amplify_outputs.json";
+// src/index.tsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import { Amplify } from 'aws-amplify';
+import awsconfig from './aws-exports.d'; // Adjust the path if necessary
 
-Amplify.configure(outputs);
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// Configure Amplify with the exported configuration
+Amplify.configure(awsconfig);
+
+ReactDOM.render(<App />, document.getElementById('root'));
