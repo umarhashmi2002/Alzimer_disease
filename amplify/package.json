@@ -1,7 +1,0 @@
-{
-  "type": "module",
-  "dependencies": {
-    "@aws-amplify/datastore": "^5.0.42",
-    "aws-amplify": "^6.4.3"
-  }
-}
