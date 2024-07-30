@@ -1,0 +1,40 @@
+{
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@aws-amplify/datastore": "^5.0.42",
+    "aws-amplify": "^6.4.3",
+    "@aws-amplify/ui-react": "^6.1.14",
+    "openai": "^4.53.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@aws-amplify/auth": "^4.5.0",
+    "@aws-amplify/core": "^5.0.0",
+    "aws-sdk": "^2.1188.0"
+  },
+  "devDependencies": {
+    "@aws-amplify/backend": "^1.0.4",
+    "@aws-amplify/backend-cli": "^1.1.1",
+    "@types/jest": "^29.5.12",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.2.22",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "aws-cdk": "^2.138.0",
+    "aws-cdk-lib": "^2.138.0",
+    "constructs": "^10.3.0",
+    "esbuild": "^0.20.2",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.0"
+  }
+}

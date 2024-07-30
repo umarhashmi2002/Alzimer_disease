@@ -1,0 +1,15 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-fitnessnutrition-dev-febea-authRole",
+      "UnauthRoleArn": "arn:aws:iam::009160073737:role/amplify-fitnessnutrition-dev-febea-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::009160073737:role/amplify-fitnessnutrition-dev-febea-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-fitnessnutrition-dev-febea-deployment",
+      "UnauthRoleName": "amplify-fitnessnutrition-dev-febea-unauthRole",
+      "StackName": "amplify-fitnessnutrition-dev-febea",
+      "StackId": "arn:aws:cloudformation:us-east-1:009160073737:stack/amplify-fitnessnutrition-dev-febea/77c41ad0-4ec1-11ef-9b0a-12b649162157",
+      "AmplifyAppId": "d3u7ep5q0yc4gt"
+    }
+  }
+}
