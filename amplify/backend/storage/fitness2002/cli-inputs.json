@@ -1,0 +1,26 @@
+{
+  "resourceName": "fitness2002",
+  "tableName": "fitness2002",
+  "partitionKey": {
+    "fieldName": "userid",
+    "fieldType": "number"
+  },
+  "sortKey": {
+    "fieldName": "email",
+    "fieldType": "string"
+  },
+  "gsi": [
+    {
+      "name": "nutrition",
+      "partitionKey": {
+        "fieldName": "userid",
+        "fieldType": "number"
+      },
+      "sortKey": {
+        "fieldName": "email",
+        "fieldType": "string"
+      }
+    }
+  ],
+  "triggerFunctions": []
+}

@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "fitnessnutrition",
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 150,
+      "apiKeyExpirationDate": "2024-12-28T08:10:33.112Z",
+      "keyDescription": "Api for backend"
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authfitnessnutritioncff50283"
+      }
+    ]
+  }
+}

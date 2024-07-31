@@ -1,0 +1,22 @@
+type FitnessData @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  userId: String!
+  date: AWSDateTime!
+  workoutType: String!
+  duration: Float!
+}
+
+type NutritionData @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  userId: String!
+  date: AWSDateTime!
+  mealType: String!
+  calories: Float!
+}
+
+type NutritionRecommendation @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  userId: String!
+  date: AWSDateTime!
+  recommendation: String!
+}

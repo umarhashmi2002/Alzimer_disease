@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-fitnessnutrition-dev-b0da8-authRole",
+      "UnauthRoleArn": "arn:aws:iam::009160073737:role/amplify-fitnessnutrition-dev-b0da8-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::009160073737:role/amplify-fitnessnutrition-dev-b0da8-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-fitnessnutrition-dev-b0da8-deployment",
+      "UnauthRoleName": "amplify-fitnessnutrition-dev-b0da8-unauthRole",
+      "StackName": "amplify-fitnessnutrition-dev-b0da8",
+      "StackId": "arn:aws:cloudformation:us-east-1:009160073737:stack/amplify-fitnessnutrition-dev-b0da8/c62cc350-4f13-11ef-80df-0affeea1b9ef",
+      "AmplifyAppId": "d2c5pvda73azq"
+    },
+    "categories": {
+      "auth": {
+        "fitnessnutritioncff50283": {}
+      },
+      "api": {
+        "fitnessnutrition": {}
+      },
+      "storage": {
+        "fitness2002": {}
+      }
+    }
+  }
+}

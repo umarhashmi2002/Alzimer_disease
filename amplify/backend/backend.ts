@@ -1,7 +1,7 @@
 import { Amplify } from 'aws-amplify';
 import awsconfig from '../src/aws-exports.js'; // Import the actual JavaScript file
 import { schema } from './data/resource'; // Ensure this matches the export
-// import { AmplifyConfig } from '../src/types/amplify-config'; // Correctly import the type
+ import { AmplifyConfig } from '../src/types/amplify-config'; // Correctly import the type
 
 // Correctly configure Amplify with the exported configuration
 Amplify.configure(awsconfig);
