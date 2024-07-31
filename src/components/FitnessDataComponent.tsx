@@ -1,51 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import '../index.css'; // Ensure Tailwind CSS is properly set up
+import React, { useState } from 'react';
 
 interface FitnessData {
   id: string;
-  userId: string;
   date: string;
   workoutType: string;
   duration: number;
 }
 
-const FitnessDataComponent: React.FC = () => {
+interface FitnessDataComponentProps {
+  onFitnessDataSubmit: (fitnessData: FitnessData[]) => void;
+}
+
+const FitnessDataComponent: React.FC<FitnessDataComponentProps> = ({ onFitnessDataSubmit }) => {
   const [fitnessData, setFitnessData] = useState<FitnessData[]>([]);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchFitnessData = async () => {
-      try {
-        const dataItems: FitnessData[] = []; // Mocked data fetching
-        setFitnessData(dataItems);
-      } catch (err) {
-        setError((err as Error).message);
-      }
+  const createFitnessData = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const form = e.target as HTMLFormElement;
+    const workoutType = form.workoutType.value;
+    const duration = parseFloat(form.duration.value);
+
+    const newData: FitnessData = {
+      id: Date.now().toString(), // Simple ID generation based on timestamp
+      date: new Date().toISOString().split('T')[0],
+      workoutType,
+      duration,
     };
 
-    fetchFitnessData();
-  }, []);
-
-  const createFitnessData = async () => {
-    const workoutType = window.prompt('Workout type');
-    const duration = parseFloat(window.prompt('Duration in minutes') || '0');
-    try {
-      const newData: FitnessData = {
-        id: 'newId', // Replace with actual ID generation logic
-        userId: 'currentUserId', // Replace with the actual user ID
-        date: new Date().toISOString().split('T')[0],
-        workoutType: workoutType || '',
-        duration,
-      };
-      setFitnessData([...fitnessData, newData]);
-    } catch (err) {
-      setError((err as Error).message);
-    }
+    setFitnessData([...fitnessData, newData]);
+    onFitnessDataSubmit([...fitnessData, newData]);
+    form.reset(); // Clear form inputs after submission
   };
 
   const deleteFitnessData = async (id: string) => {
     try {
-      setFitnessData(fitnessData.filter((data) => data.id !== id));
+      const updatedFitnessData = fitnessData.filter((data) => data.id !== id);
+      setFitnessData(updatedFitnessData);
+      onFitnessDataSubmit(updatedFitnessData);
     } catch (err) {
       setError((err as Error).message);
     }
@@ -54,12 +47,42 @@ const FitnessDataComponent: React.FC = () => {
   return (
     <section className="fitness-data-section p-6 bg-white rounded-lg shadow-md max-w-3xl mx-auto mt-8">
       <h2 className="text-2xl font-semibold text-center mb-4">Fitness Data</h2>
-      <button 
-        className="w-full bg-green-500 text-white py-2 px-4 rounded mb-4 hover:bg-green-600 transition-colors"
-        onClick={createFitnessData}>
-        + Add Fitness Data
-      </button>
+
+      {/* Fitness Data Form */}
+      <form 
+        onSubmit={createFitnessData} 
+        className="space-y-4 mb-8 relative z-10" // Ensure form inputs are on top layer
+        style={{ zIndex: 10 }} // Inline style as an additional check
+      >
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Workout Type</label>
+          <input 
+            type="text" 
+            name="workoutType" 
+            required 
+            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-white text-black"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Duration (mins)</label>
+          <input 
+            type="number" 
+            name="duration" 
+            required 
+            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-white text-black"
+          />
+        </div>
+        <button 
+          type="submit" 
+          className="w-full bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-colors"
+        >
+          + Add Fitness Data
+        </button>
+      </form>
+
       {error && <div className="text-red-500 text-center mb-4">{error}</div>}
+
+      {/* Fitness Data Table */}
       <table className="fitness-data-table w-full border-collapse bg-gray-50 text-left shadow-sm">
         <thead>
           <tr className="bg-blue-500 text-white">
@@ -71,7 +94,7 @@ const FitnessDataComponent: React.FC = () => {
         </thead>
         <tbody>
           {fitnessData.map((data) => (
-            <tr key={data.id} className="odd:bg-white even:bg-gray-100">
+            <tr key={data.id} className="odd:bg-white even:bg-gray-100 text-black"> {/* Ensure text color is black */}
               <td className="py-2 px-4 border-b">{data.date}</td>
               <td className="py-2 px-4 border-b">{data.workoutType}</td>
               <td className="py-2 px-4 border-b">{data.duration}</td>
@@ -86,6 +109,11 @@ const FitnessDataComponent: React.FC = () => {
           ))}
         </tbody>
       </table>
+
+      {/* Total Exercise Time */}
+      <div className="mt-4 text-lg font-semibold text-black"> {/* Ensure text color is black */}
+        Total Exercise Time: {fitnessData.reduce((acc, data) => acc + data.duration, 0)} minutes
+      </div>
     </section>
   );
 };

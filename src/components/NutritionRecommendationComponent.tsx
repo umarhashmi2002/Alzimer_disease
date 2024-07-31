@@ -37,7 +37,7 @@ const NutritionRecommendationComponent: React.FC = () => {
   };
 
   return (
-    <section className="p-6 bg-white rounded-lg shadow-md max-w-md mx-auto mt-8">
+    <section className="nutrition-recommendation-section p-6 bg-white rounded-lg shadow-md max-w-3xl mx-auto mt-8">
       <h2 className="text-2xl font-semibold text-center mb-4">Nutrition Recommendation</h2>
       <button 
         className={`w-full py-2 px-4 rounded ${loading ? 'bg-gray-500' : 'bg-blue-500'} text-white hover:bg-blue-600 transition-colors`}
@@ -46,7 +46,7 @@ const NutritionRecommendationComponent: React.FC = () => {
         {loading ? 'Loading...' : 'Get Recommendation'}
       </button>
       {error && <div className="text-red-500 text-center mt-4">{error}</div>}
-      {recommendation && <div className="mt-4 p-4 bg-gray-100 rounded">{recommendation}</div>}
+      {recommendation && <div className="mt-4 p-4 bg-gray-100 rounded text-black shadow-inner">{recommendation}</div>}
     </section>
   );
 };

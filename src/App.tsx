@@ -1,48 +1,145 @@
-// src/App.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import FitnessDataComponent from './components/FitnessDataComponent';
 import NutritionDataComponent from './components/NutritionDataComponent';
 import NutritionRecommendationComponent from './components/NutritionRecommendationComponent';
-import './index.css'; // Assuming you're adding the styles to your index.css or App.css
-//
+import UserHealthInfoComponent from './components/UserHealth';
+import './index.css';
+
+// Import images
+import fitness1 from './assets/fitness1.jpg';
+import fitness2 from './assets/fitness2.png';
+import fitness3 from './assets/fitness3.jpeg';
+
+interface UserHealthInfo {
+  age: number;
+  sex: string;
+  weight: number;
+  height: number;
+  bmi: number;
+  healthProblems: string[];
+}
+
+interface FitnessData {
+  id: string;
+  date: string;
+  workoutType: string;
+  duration: number;
+}
+
 const App: React.FC = () => {
+  const [, setUserHealthInfo] = useState<UserHealthInfo | null>(null);
+  const [, setFitnessData] = useState<FitnessData[]>([]);
+
+  const handleHealthInfoSubmit = (healthInfo: UserHealthInfo) => {
+    setUserHealthInfo(healthInfo);
+    // You can use `userHealthInfo` here to display data or pass it to other components
+  };
+
+  const handleFitnessDataSubmit = (newFitnessData: FitnessData[]) => {
+    setFitnessData(newFitnessData);
+    // You can use `fitnessData` here to display data or pass it to other components
+  };
+
   return (
     <Authenticator>
-      {({ signOut, user }) => (
-        <main className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
-          <div className="bg-white shadow-lg rounded-lg p-6 max-w-3xl w-full">
-            <h1 className="text-2xl font-bold text-gray-800 mb-4">
-              {user?.username}'s Fitness and Nutrition Data
-            </h1>
-            <div className="space-y-6">
-              <FitnessDataComponent />
-              <NutritionDataComponent />
-              <NutritionRecommendationComponent />
+      {({ signOut }) => (
+        <div className="min-h-screen bg-gradient-to-r from-gray-900 via-purple-900 to-gray-800 text-white">
+          {/* Sticky Navbar */}
+          <nav className="sticky top-0 z-50 bg-gray-900 bg-opacity-90 shadow-lg">
+            <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <img
+                  src={fitness1} // Replace with your actual logo path
+                  alt="App Logo"
+                  className="w-10 h-10"
+                />
+                <span className="text-2xl font-bold">Fitness & Nutrition App</span>
+              </div>
+              <div className="space-x-4">
+                <button
+                  onClick={signOut}
+                  className="bg-red-500 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-lg hover:bg-red-600 transform transition-transform duration-300 hover:scale-105"
+                >
+                  Sign out
+                </button>
+              </div>
             </div>
-            <div className="mt-8 bg-green-100 text-green-800 p-4 rounded-md">
-              <span role="img" aria-label="celebration" className="text-2xl">
-                🥳
-              </span>{' '}
-              <span className="font-semibold">App successfully hosted.</span> Try creating new
-              fitness or nutrition data.
-              <br />
-              <a
-                href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates"
-                className="text-blue-500 underline mt-2 inline-block"
-              >
-                Review the next step of this tutorial.
-              </a>
+          </nav>
+
+          {/* Main Content */}
+          <div className="flex flex-col items-center p-8 space-y-12">
+            <div className="bg-gray-800 shadow-2xl rounded-lg p-10 max-w-6xl w-full space-y-12">
+              
+              {/* User Health Info */}
+              <div className="flex space-x-8">
+                <div className="w-3/4 p-8 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg shadow-lg">
+                  <UserHealthInfoComponent onHealthInfoSubmit={handleHealthInfoSubmit} />
+                </div>
+                <div className="w-1/4 flex items-center justify-center">
+                  <img
+                    src={fitness3} // Use the imported image path
+                    alt="User Health Info"
+                    className="rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105"
+                  />
+                </div>
+              </div>
+
+              {/* Fitness Data */}
+              <div className="flex space-x-8">
+                <div className="w-3/4 p-8 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg shadow-lg">
+                  <FitnessDataComponent onFitnessDataSubmit={handleFitnessDataSubmit} />
+                </div>
+                <div className="w-1/4 flex items-center justify-center">
+                  <img
+                    src={fitness1} // Use the imported image path
+                    alt="Fitness Data"
+                    className="rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105"
+                  />
+                </div>
+              </div>
+
+              {/* Nutrition Data */}
+              <div className="flex space-x-8">
+                <div className="w-3/4 p-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg shadow-lg">
+                  <NutritionDataComponent />
+                </div>
+                <div className="w-1/4 flex items-center justify-center">
+                  <img
+                    src={fitness2} // Use the imported image path
+                    alt="Nutrition Data"
+                    className="rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105"
+                  />
+                </div>
+              </div>
+
+              {/* Nutrition Recommendation */}
+              <div className="flex space-x-8">
+                <div className="w-3/4 p-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-lg shadow-lg">
+                  <NutritionRecommendationComponent />
+                </div>
+                <div className="w-1/4 flex items-center justify-center">
+                  <img
+                    src={fitness3} // Use the imported image path
+                    alt="Nutrition Recommendations"
+                    className="rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105"
+                  />
+                </div>
+              </div>
             </div>
-            <button
-              onClick={signOut}
-              className="mt-6 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-            >
-              Sign out
-            </button>
+
+            {/* Footer */}
+            <footer className="w-full max-w-6xl bg-gray-800 text-gray-400 p-6 rounded-lg text-center shadow-lg">
+              <div>
+                <p className="text-lg font-semibold">Contact Us</p>
+                <p>Email: contact@fitnessnutrition.com</p>
+                <p>Phone: +1 234 567 890</p>
+                <p>Address: 123 Fitness Ave, Healthy City, WellState, 45678</p>
+              </div>
+            </footer>
           </div>
-        </main>
+        </div>
       )}
     </Authenticator>
   );
