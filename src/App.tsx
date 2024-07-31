@@ -6,7 +6,7 @@ import FitnessDataComponent from './components/FitnessDataComponent';
 import NutritionDataComponent from './components/NutritionDataComponent';
 import NutritionRecommendationComponent from './components/NutritionRecommendationComponent';
 import './index.css'; // Assuming you're adding the styles to your index.css or App.css
-
+//
 const App: React.FC = () => {
   return (
     <Authenticator>
