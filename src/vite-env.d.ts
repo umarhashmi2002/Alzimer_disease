@@ -1,9 +1,10 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+/// <reference types="vite/client" />
 
-export default defineConfig({
-  plugins: [react()],
-  optimizeDeps: {
-    include: ['aws-amplify', '@aws-amplify/auth'],
-  },
-});
+interface ImportMetaEnv {
+  readonly VITE_OPENAI_API_KEY: string;
+  // Add more environment variables as needed
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
