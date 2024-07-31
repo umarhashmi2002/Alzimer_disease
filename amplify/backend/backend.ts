@@ -1,23 +1,19 @@
 import { Amplify } from 'aws-amplify';
-import awsconfig from '../src/aws-exports.js'; // Import the actual JavaScript file
-import { schema } from './data/resource'; // Ensure this matches the export
- import { AmplifyConfig } from '../src/types/amplify-config'; // Correctly import the type
+import awsconfig from '../../src/aws-exports'; // Adjusted path
 
-// Correctly configure Amplify with the exported configuration
 Amplify.configure(awsconfig);
 
 export const backend = {
   auth: {
     Auth: {
-      userPoolId: awsconfig.Auth.userPoolId,
-      userPoolWebClientId: awsconfig.Auth.userPoolWebClientId,
-      identityPoolId: awsconfig.Auth.identityPoolId,
-      mandatorySignIn: awsconfig.Auth.mandatorySignIn,
-      authenticationFlowType: awsconfig.Auth.authenticationFlowType,
+      userPoolId: awsconfig.aws_user_pools_id,
+      userPoolWebClientId: awsconfig.aws_user_pools_web_client_id,
+      identityPoolId: awsconfig.aws_cognito_identity_pool_id,
+      mandatorySignIn: true,
+      authenticationFlowType: 'USER_SRP_AUTH',
     },
   },
   api: {
-    API: awsconfig.API, // Use the correct export name
+    API: awsconfig.aws_appsync_graphqlEndpoint,
   },
-  data: schema, // Ensure this matches the export
 };
