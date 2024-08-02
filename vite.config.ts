@@ -6,7 +6,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       // You can still keep this external option if needed
-      external: ['@aws-amplify/core/internals/utils'],
+      //external: ['@aws-amplify/core/internals/utils'],
     },
   },
 });
