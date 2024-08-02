@@ -16,7 +16,7 @@ const NutritionRecommendationComponent: React.FC = () => {
           'Authorization': `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}` // Use environment variable for Vite
         },
         body: JSON.stringify({
-          model: 'text-davinci-003',
+          model: 'chatgpt-4o-1.0',
           prompt: 'Provide a personalized nutrition recommendation based on the user\'s fitness data.',
           max_tokens: 100
         })

@@ -1,0 +1,17 @@
+[33ma6dc9a7[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Updated UI and deployed to Amplify backend
+[33me01518e[m Updated Amplify configuration and deployed to AWS
+[33mb505856[m Updated Amplify configuration and deployed to AWS
+[33m1aacf3e[m Updated Amplify configuration and deployed to AWS
+[33m601151e[m Updated Amplify configuration and deployed to AWS
+[33med446ff[m Updated Amplify configuration and deployed to AWS
+[33m63dde9a[m Updated Amplify configuration and deployed to AWS
+[33me706f8a[m Fix Amplify backend configuration
+[33m066f9ef[m changing done
+[33mccc680e[m updates
+[33m666bb18[m updates
+[33m7360262[m solved backend error
+[33me86c711[m making UI components
+[33m369c5c4[m updating Schema
+[33mba05990[m added per-user data isolation
+[33m657b08d[m added authenticator
+[33m9b096d1[m Initial commit

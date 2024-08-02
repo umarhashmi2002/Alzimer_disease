@@ -94,7 +94,7 @@ const FitnessDataComponent: React.FC<FitnessDataComponentProps> = ({ onFitnessDa
         </thead>
         <tbody>
           {fitnessData.map((data) => (
-            <tr key={data.id} className="odd:bg-white even:bg-gray-100 text-black"> {/* Ensure text color is black */}
+            <tr key={data.id} className="odd:bg-white even:bg-gray-100 text-black">
               <td className="py-2 px-4 border-b">{data.date}</td>
               <td className="py-2 px-4 border-b">{data.workoutType}</td>
               <td className="py-2 px-4 border-b">{data.duration}</td>
@@ -111,7 +111,7 @@ const FitnessDataComponent: React.FC<FitnessDataComponentProps> = ({ onFitnessDa
       </table>
 
       {/* Total Exercise Time */}
-      <div className="mt-4 text-lg font-semibold text-black"> {/* Ensure text color is black */}
+      <div className="mt-4 text-lg font-semibold text-black">
         Total Exercise Time: {fitnessData.reduce((acc, data) => acc + data.duration, 0)} minutes
       </div>
     </section>
