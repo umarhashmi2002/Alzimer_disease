@@ -1,3 +1,4 @@
+//code for the UserHealth component
 import React, { useState } from 'react';
 
 interface UserHealthInfo {

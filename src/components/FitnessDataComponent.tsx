@@ -46,6 +46,7 @@ const FitnessDataComponent: React.FC<FitnessDataComponentProps> = ({ onFitnessDa
 
   return (
     <section className="fitness-data-section p-6 bg-white rounded-lg shadow-md max-w-3xl mx-auto mt-8">
+      <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">Fitness Data Component</h1> {/* New Heading */}
       <h2 className="text-2xl font-semibold text-center mb-4">Fitness Data</h2>
 
       {/* Fitness Data Form */}

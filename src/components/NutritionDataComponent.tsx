@@ -60,6 +60,7 @@ const NutritionDataComponent: React.FC = () => {
 
   return (
     <section className="nutrition-data-section p-6 bg-white rounded-lg shadow-md max-w-3xl mx-auto mt-8">
+      <h1 className="text-3xl font-bold text-center text-green-600 mb-6">Nutrition Data Component</h1> {/* New Heading */}
       <h2 className="text-2xl font-semibold text-center mb-4">Nutrition Data</h2>
 
       {/* Nutrition Data Form */}
