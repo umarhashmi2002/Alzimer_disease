@@ -9,9 +9,10 @@ export const getNutritionRecommendation = async () => {
         model: 'gpt-4',
         messages: [
           { role: 'system', content: 'You are a helpful assistant.' },
-          { role: 'user', content: 'Provide a personalized nutrition recommendation based on the user\'s fitness data.' }
+          { role: 'user', content: 'Provide a personalized nutrition , fitness and Exercise recommendation based on the user\'s fitness data.' }
         ],
         max_tokens: 100,
+        temperature: 0.5,
       }),
     });
 

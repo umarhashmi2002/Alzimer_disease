@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Authenticator, ThemeProvider, Theme, View } from '@aws-amplify/ui-react';
+import { motion } from 'framer-motion';
 import '@aws-amplify/ui-react/styles.css';
 import FitnessDataComponent from './components/FitnessDataComponent';
 import NutritionDataComponent from './components/NutritionDataComponent';
@@ -96,93 +97,189 @@ const App: React.FC = () => {
           <ThemeProvider theme={appTheme}>
             <div className="min-h-screen bg-gradient-to-r from-gray-900 via-purple-900 to-gray-800 text-white">
               {/* Sticky Navbar */}
-              <nav className="sticky top-0 z-50 bg-gray-900 bg-opacity-90 shadow-lg">
-                <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    <img src={fitness1} alt="App Logo" className="w-10 h-10" />
-                    <span className="text-2xl font-bold">Fitness & Nutrition App</span>
-                  </div>
-                  <div className="space-x-4">
-                    <button
+              <motion.nav
+                className="sticky top-0 z-50 bg-gray-900 bg-opacity-90 shadow-lg"
+                initial={{ y: -100 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+              >
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+                  <motion.div
+                    className="flex items-center space-x-4"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                  >
+                    <img src={fitness1} alt="App Logo" className="w-10 h-10 sm:w-12 sm:h-12 rounded-full shadow-lg" />
+                    <span className="text-xl sm:text-2xl md:text-3xl font-bold">Fitness & Nutrition App</span>
+                  </motion.div>
+                  <motion.div
+                    className="space-x-4"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                  >
+                    <motion.button
                       onClick={signOut}
-                      className="bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-lg hover:bg-blue-600 transform transition-transform duration-300 hover:scale-105"
+                      className="bg-blue-500 text-white text-sm sm:text-lg font-semibold px-4 sm:px-5 py-2 sm:py-3 rounded-full shadow-lg hover:bg-blue-600 transform transition-transform duration-300 hover:scale-105"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                     >
                       Sign out
-                    </button>
-                  </div>
+                    </motion.button>
+                  </motion.div>
                 </div>
-              </nav>
+              </motion.nav>
 
               {/* Main Content */}
-              <div className="flex flex-col items-center p-8 space-y-12">
-                <div className="bg-gray-800 shadow-2xl rounded-lg p-10 max-w-6xl w-full space-y-12">
+              <motion.div
+                className="flex flex-col items-center p-6 sm:p-10 space-y-12 sm:space-y-16"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+              >
+                <motion.div
+                  className="bg-gray-800 shadow-2xl rounded-lg p-6 sm:p-12 max-w-full lg:max-w-7xl w-full space-y-12 sm:space-y-16"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.6, ease: 'easeOut' }}
+                >
                   {/* User Health Info */}
-                  <div className="flex space-x-8">
-                    <div className="w-3/4 p-8 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg shadow-lg">
+                  <div className="flex flex-col sm:flex-row space-y-8 sm:space-y-0 sm:space-x-12">
+                    <motion.div
+                      className="sm:w-3/4 w-full p-6 sm:p-10 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg shadow-lg"
+                      initial={{ x: -100, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.8 }}
+                    >
                       <UserHealthInfoComponent onHealthInfoSubmit={handleHealthInfoSubmit} />
-                    </div>
-                    <div className="w-1/4 flex items-center justify-center">
-                      <img
+                    </motion.div>
+                    <motion.div
+                      className="sm:w-1/4 w-full flex items-center justify-center"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1, rotate: 360 }}
+                      transition={{ duration: 1, delay: 0.4, ease: 'easeOut' }}
+                    >
+                      <motion.img
                         src={fitness3}
                         alt="User Health Info"
-                        className="rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105"
+                        className="rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-110 w-full sm:w-auto"
+                        whileHover={{ scale: 1.1 }}
                       />
-                    </div>
+                    </motion.div>
                   </div>
 
                   {/* Fitness Data */}
-                  <div className="flex space-x-8">
-                    <div className="w-3/4 p-8 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg shadow-lg">
+                  <div className="flex flex-col sm:flex-row space-y-8 sm:space-y-0 sm:space-x-12">
+                    <motion.div
+                      className="sm:w-3/4 w-full p-6 sm:p-10 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg shadow-lg"
+                      initial={{ x: -100, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.8, delay: 0.2 }}
+                    >
                       <FitnessDataComponent onFitnessDataSubmit={handleFitnessDataSubmit} />
-                    </div>
-                    <div className="w-1/4 flex items-center justify-center">
-                      <img
+                    </motion.div>
+                    <motion.div
+                      className="sm:w-1/4 w-full flex items-center justify-center"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1, rotate: 360 }}
+                      transition={{ duration: 1, delay: 0.6, ease: 'easeOut' }}
+                    >
+                      <motion.img
                         src={fitness1}
                         alt="Fitness Data"
-                        className="rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105"
+                        className="rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-110 w-full sm:w-auto"
+                        whileHover={{ scale: 1.1 }}
                       />
-                    </div>
+                    </motion.div>
                   </div>
 
                   {/* Nutrition Data */}
-                  <div className="flex space-x-8">
-                    <div className="w-3/4 p-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg shadow-lg">
+                  <div className="flex flex-col sm:flex-row space-y-8 sm:space-y-0 sm:space-x-12">
+                    <motion.div
+                      className="sm:w-3/4 w-full p-6 sm:p-10 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg shadow-lg"
+                      initial={{ x: -100, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.8, delay: 0.4 }}
+                    >
                       <NutritionDataComponent />
-                    </div>
-                    <div className="w-1/4 flex items-center justify-center">
-                      <img
+                    </motion.div>
+                    <motion.div
+                      className="sm:w-1/4 w-full flex items-center justify-center"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1, rotate: 360 }}
+                      transition={{ duration: 1, delay: 0.8, ease: 'easeOut' }}
+                    >
+                      <motion.img
                         src={fitness2}
                         alt="Nutrition Data"
-                        className="rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105"
+                        className="rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-110 w-full sm:w-auto"
+                        whileHover={{ scale: 1.1 }}
                       />
-                    </div>
+                    </motion.div>
                   </div>
 
                   {/* Nutrition Recommendation */}
-                  <div className="flex space-x-8">
-                    <div className="w-3/4 p-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-lg shadow-lg">
+                  <div className="flex flex-col sm:flex-row space-y-8 sm:space-y-0 sm:space-x-12">
+                    <motion.div
+                      className="sm:w-3/4 w-full p-6 sm:p-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-lg shadow-lg"
+                      initial={{ x: -100, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.8, delay: 0.6 }}
+                    >
                       <NutritionRecommendationComponent />
-                    </div>
-                    <div className="w-1/4 flex items-center justify-center">
-                      <img
+                    </motion.div>
+                    <motion.div
+                      className="sm:w-1/4 w-full flex items-center justify-center"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1, rotate: 360 }}
+                      transition={{ duration: 1, delay: 1, ease: 'easeOut' }}
+                    >
+                      <motion.img
                         src={fitness3}
                         alt="Nutrition Recommendations"
-                        className="rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105"
+                        className="rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-110 w-full sm:w-auto"
+                        whileHover={{ scale: 1.1 }}
                       />
-                    </div>
+                    </motion.div>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Footer */}
-                <footer className="w-full max-w-6xl bg-gray-800 text-gray-400 p-6 rounded-lg text-center shadow-lg">
-                  <div>
+                <motion.footer
+                  className="w-full max-w-7xl bg-gray-800 text-gray-400 p-8 rounded-lg text-center shadow-lg"
+                  initial={{ y: 100, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, ease: 'easeOut' }}
+                >
+                  <div className="space-y-2">
                     <p className="text-lg font-semibold">Contact Us</p>
                     <p>Email: contact@fitnessnutrition.com</p>
                     <p>Phone: +1 234 567 890</p>
                     <p>Address: 123 Fitness Ave, Healthy City, WellState, 45678</p>
+                    <div className="flex justify-center space-x-4 mt-4">
+                      <a
+                        href="#"
+                        className="text-blue-500 hover:text-blue-700 transition-colors duration-300"
+                      >
+                        <i className="fab fa-facebook-f"></i>
+                      </a>
+                      <a
+                        href="#"
+                        className="text-pink-500 hover:text-pink-700 transition-colors duration-300"
+                      >
+                        <i className="fab fa-instagram"></i>
+                      </a>
+                      <a
+                        href="#"
+                        className="text-blue-400 hover:text-blue-600 transition-colors duration-300"
+                      >
+                        <i className="fab fa-twitter"></i>
+                      </a>
+                    </div>
                   </div>
-                </footer>
-              </div>
+                </motion.footer>
+              </motion.div>
             </div>
           </ThemeProvider>
         ) : (
